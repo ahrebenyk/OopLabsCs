@@ -1,0 +1,12 @@
+﻿## .NET files
+bin/
+obj/
+out/
+[Rr]elease/
+[Dd]ebug/
+
+
+## Rider / JetBrains files
+.idea/
+*.sln.iml
+*.DotSettings.user
