@@ -23,7 +23,7 @@ public class Lab3
         WriteLine("Одновимірний масив:");
         PrintArray(flatArray);
         
-        SortArray(flatArray);
+        flatArray.Sort();
         WriteLine("Відсортований масив:");
         PrintArray(flatArray);
 
@@ -114,24 +114,6 @@ public class Lab3
             }
         }
         return flatArray;
-    }
-        
-    private static void SortArray(int[] array)
-    {
-        var n = array.Length;
-        for (var i = 0; i < n - 1; i++)
-        {
-            var minIndex = i;
-            for (var j = i + 1; j < n; j++)
-            {
-                if (array[j] < array[minIndex])
-                {
-                    minIndex = j;
-                }
-            }
-
-            (array[minIndex], array[i]) = (array[i], array[minIndex]);
-        }    
     }
         
     private static int[,] FlatArrayToMatrix(int[] array)
