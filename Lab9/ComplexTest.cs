@@ -1,9 +1,8 @@
-﻿using System.Text;
-using static System.Console;
+﻿using static System.Console;
 
 namespace Lab4;
 
-public class Lab9
+public class ComplexTest
 {
     public static void Main()
     {
