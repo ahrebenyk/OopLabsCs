@@ -2,7 +2,7 @@
 
 namespace Lab13;
 
-public class ComplexTest
+public class DelegatesTest
 {
     delegate Complex UnaryOperation(Complex c);
     delegate Complex BinaryOperation(Complex с1, Complex c2); 
@@ -28,7 +28,13 @@ public class ComplexTest
         var incResult = incOp(complex);
         WriteLine("Inc result: " + incResult);
         WriteLine("Complex number after inc: " + complex);
-        
+
+        UnaryOperation groupDel = incOp;
+        groupDel += incOp;
+        groupDel += incOp;
+        var c3 = new Complex(1, 1);
+        groupDel(c3);
+        WriteLine("Group delegate result: " + c3);
     }
     
 }
