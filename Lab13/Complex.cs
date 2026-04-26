@@ -1,10 +1,14 @@
 ﻿namespace Lab13;
 
+public delegate void ActionDelegate(string msg);
+
 public class Complex(double re, double im) : IArithmetic, IComparable
 {
     private double Re { get; set; } = re;
     private double Im { get; set; } = im;
 
+    public static event ActionDelegate? ActionEvent;
+    
     public Complex Add(Complex other)
     {
         return new Complex(Re + other.Re, Im + other.Im);
@@ -12,7 +16,9 @@ public class Complex(double re, double im) : IArithmetic, IComparable
 
     public Complex Subtract(Complex other)
     {
-        return new Complex(Re - other.Re, Im - other.Im);
+        var result = new Complex(Re - other.Re, Im - other.Im);
+        ActionEvent?.Invoke($"perform operation: [{this}] - [{other}], result = {result}");
+        return result;
     }
 
     public Complex Multiply(Complex other)
@@ -37,12 +43,15 @@ public class Complex(double re, double im) : IArithmetic, IComparable
         var beforeUpdate = new Complex(Re, Im);
         Re++;
         Im++;
+        ActionEvent?.Invoke($"perform operation: [{beforeUpdate}] ++, result = {this}");
         return beforeUpdate;
     }
     
     public bool GreaterThan(Complex other)
     {
-        return Compare(other) == 1;
+        var result = Compare(other) == 1;
+        ActionEvent?.Invoke($"perform operation: [{this}] > [{other}], result = {result}");
+        return result;
     }
     
     private double GetAbsSqr() => Re * Re + Im * Im;
@@ -53,3 +62,4 @@ public class Complex(double re, double im) : IArithmetic, IComparable
         return $"{Re} {sign} {Math.Abs(Im)}i";
     }
 }
+

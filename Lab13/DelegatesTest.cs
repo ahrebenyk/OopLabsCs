@@ -35,6 +35,13 @@ public class DelegatesTest
         var c3 = new Complex(1, 1);
         groupDel(c3);
         WriteLine("Group delegate result: " + c3);
+
+        Complex.ActionEvent += (str) => WriteLine("Complex action: " + str);
+        Complex.ActionEvent += (str) => File.AppendAllText("log.txt", str + Environment.NewLine);;
+        var c4 = new Complex(1, 1);
+        c4.Subtract(c1);
+        c4.Increment();
+        c4.GreaterThan(c1);
     }
     
 }
